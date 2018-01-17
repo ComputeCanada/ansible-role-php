@@ -11,6 +11,10 @@
   register: php_package_install
   notify: restart webserver
 
+- name: Ensure PHP extensions are installed with pecl.
+  command: "pecl install {{item.install_name}}"
+  with_items: "{{php_pecl_extensions}}"
+
 - name: Delete APCu configuration file if this role will provide one.
   file:
     path: "{{ item }}/{{ php_apc_conf_filename }}"

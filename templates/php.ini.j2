@@ -223,3 +223,7 @@ soap.wsdl_cache_limit = 5
 
 [ldap]
 ldap.max_links = -1
+
+{% for item in php_pecl_extensions %}
+extension={{item.extension_name}}
+{% endfor %}

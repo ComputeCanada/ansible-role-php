@@ -46,6 +46,10 @@ If you have enabled any additional repositories such as [geerlingguy.repo-epel](
 
 The executable to run when calling PHP from the command line. You should only change this if running `php` on your server doesn't target the correct executable, or if you're using software collections on RHEL/CentOS and need to target a different version of PHP.
 
+    php_pecl_extensions: []
+
+A list of dictionaries of the form {install_name:<install-name>, extension_name:<extension-name>}. This is used to install the listed php extensions with the "pecl" command. This requires including the "php-pear" package in the above "php_packages" list. In the dictionary <install-name> is the name used when installing the extension with the pecl install command for example "ssh2-1.1.2", and <extension-name> is how the extensions should be referenced in the php.ini file, for example "ssh2.so".
+
 ### PHP-FPM
 
 PHP-FPM is a simple and robust FastCGI Process Manager for PHP. It can dramatically ease scaling of PHP apps and is the normal way of running PHP-based sites and apps when using a webserver like Nginx (though it can be used with other webservers just as easily).
@@ -208,6 +212,10 @@ None.
       - php-pdo
       - php-pecl-apcu
       - php-xml
+      ...
+    php_pecl_extensions:
+      - install_name: ssh2-1.1.2
+        extension_name: ssh2.so
       ...
 
 ## License
